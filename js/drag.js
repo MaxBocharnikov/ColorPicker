@@ -32,7 +32,6 @@
     });
 
     var changeInputValue = function (index) {
-
         var proportionValue = parseInt(range[index].offsetLeft) / parseInt(scale[index].offsetWidth);
         window.chooserValue[index].value = Math.round(MAX_INPUT_VALUE * proportionValue);
     };

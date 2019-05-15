@@ -16,6 +16,7 @@
             mainVal+=hexValue;
         });
         mainValue.setAttribute('value', mainVal);
+        mainValue.value = mainVal;
     };
 
     // Изменяем цвет превью
@@ -26,7 +27,6 @@
     // Обработчик на изменения в одном из инпутов установки цвета
     var chooserChangeHandler = function (chooser) {
         chooser.addEventListener('change', function (e) {
-            console.log(e.target.value);
             if (e.target.value < 0 || e.target.value > 255) {
                 chooser.setAttribute('value', '0');
                 chooser.value = '0';
@@ -52,9 +52,9 @@
         } else {
             mainValue.setAttribute('value', e.target.value);
         }
-        changePreview();
         changeChooserValues();
         window.changeRange();
+        changePreview();
     });
 
     //Изменить инпуты выбора цвета
