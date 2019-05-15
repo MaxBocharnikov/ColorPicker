@@ -4,7 +4,7 @@
     var scale = document.querySelectorAll('.picker__scale');
     var range = document.querySelectorAll('.picker__range');
 
-
+    var MAX_INPUT_VALUE = 255; // максимальное число rba
 
     range.forEach(function (r, index) {
         var mouseDownHandler = function (downE) {
@@ -32,9 +32,22 @@
     });
 
     var changeInputValue = function (index) {
-        var MAX_INPUT_VALUE = 255;
+
         var proportionValue = parseInt(range[index].offsetLeft) / parseInt(scale[index].offsetWidth);
         window.chooserValue[index].value = Math.round(MAX_INPUT_VALUE * proportionValue);
     };
+
+    // Изменить положение ренжа
+    window.changeRange = function () {
+        var values = [];
+        window.chooserValue.forEach(function (chooser) {
+            values.push(chooser.value);
+        });
+
+        values.forEach(function (t,index) {
+            var rangeValue = (parseInt(t, 10) / MAX_INPUT_VALUE).toFixed(2);
+            range[index].style.left = scale[index].offsetWidth * rangeValue + 'px';
+        })
+    }
 
 })();
