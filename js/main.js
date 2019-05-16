@@ -46,7 +46,7 @@
 
     // На изменение основого инпута
     mainValue.addEventListener('change', function (e) {
-        if (!e.target.value.toString().match('^#((0x){0,1}|#{0,1})([0-9A-F]{8}|[0-9A-F]{6})$')) {
+        if (!e.target.value.toString().toUpperCase().match('^#((0x){0,1}|#{0,1})([0-9A-F]{8}|[0-9A-F]{6})$')) {
             mainValue.setAttribute('value', '#000000');
             mainValue.value = '#000000';
         } else {
