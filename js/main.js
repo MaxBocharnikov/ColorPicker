@@ -4,6 +4,11 @@
     var mainValue = document.querySelector('.picker__input--main');
     window.chooserValue = document.querySelectorAll('.picker__input--chooser');
 
+    mainValue.value = '#000000';
+    window.chooserValue.forEach(function (chooser) {
+        chooser.value = '0';
+    })
+
     // Изменяем значение главного инпута
     window.changeMainValue = function () {
         var mainVal = '#';
@@ -15,7 +20,6 @@
             }
             mainVal+=hexValue;
         });
-        mainValue.setAttribute('value', mainVal);
         mainValue.value = mainVal;
     };
 
@@ -28,10 +32,9 @@
     var chooserChangeHandler = function (chooser) {
         chooser.addEventListener('change', function (e) {
             if (e.target.value < 0 || e.target.value > 255) {
-                chooser.setAttribute('value', '0');
                 chooser.value = '0';
             } else {
-                chooser.setAttribute('value', e.target.value);
+                chooser.value = e.target.value;
             }
             changeMainValue();
             window.changeRange();
@@ -47,10 +50,9 @@
     // На изменение основого инпута
     mainValue.addEventListener('change', function (e) {
         if (!e.target.value.toString().toUpperCase().match('^#((0x){0,1}|#{0,1})([0-9A-F]{8}|[0-9A-F]{6})$')) {
-            mainValue.setAttribute('value', '#000000');
             mainValue.value = '#000000';
         } else {
-            mainValue.setAttribute('value', e.target.value);
+            mainValue.value = e.target.value;
         }
         changeChooserValues();
         window.changeRange();
